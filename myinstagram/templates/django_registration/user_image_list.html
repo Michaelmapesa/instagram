@@ -1,24 +1,21 @@
-{% extends 'base.html' %} {% load static %} {% load bootstrap4 %}{% block content %}
-<link href="https://fonts.googleapis.com/css?family=Charmonman|Dancing+Script|Kodchasan|Spirax|Abril+Fatface" rel="stylesheet">
+{%extends "registration/base.html"%}
+{% load bootstrap4 %} {%load static%}
+{% load staticfiles %}
+{% block content %}
+
+<div class="jumbotron text-center" style="background-color:white;">
+    <h1 style="font-family: 'Oswald', sans-serif;"> Your Profile Page </h1>
+     <img src="{{profile.profilepic.url}}" class="img-thumbnail" id="eachimage1" style="height:200px;width:150px;"></a>
+    <p style="font-family: 'Oswald', sans-serif;">{{profile.bio}}</p>
+    <button class="btn btn-lg btn-success" style="font-family: 'Oswald', sans-serif;"><a href=" {%url 'edit_profile'%}">Edit Profile</a></button>
+    </div>
 
 <div class="container">
-
-  <div class="jumbotron text-center mb-0" style="background-color:white;">
-
-    <h1 class="h1" style="font-family: 'Grand Hotel', cursive; color:blue;font-size:70px;">Instagram</h1>
-
-  </div>
-</div>
-
-
-
-<div class="container">
-
   <div class="card-columns">
+    {% for image in images %}
 
-    {% for image in pictures %}
     <div class="card border-secondary"><a href="{% url 'image' image.id %}">
-        <img src="{{image.image.url}}" data-target="#imageModal{{image.id}}" data-toggle="modal" alt="" class="img-fluid" id="eachimage"
+        <img src="{{image.image.url}}" class="img-fluid" id="eachimage"
           size="100px200"></a>
  <p style="font-family: 'Oswald', sans-serif;"> Caption : {{ image.description}}</p>
       <p style="font-family: 'Oswald', sans-serif;">Posted by : {{ image.user}}</p>
@@ -26,16 +23,6 @@
     </div>
     {% endfor %}
   </div>
-</div>
-<div class="jumbotron text-center mt-0" style="background-color:white;">
-
-  <form  action="{%url 'homePage'%}" method="post">
-    {%csrf_token%}
-
-    {% bootstrap_form letterForm  %}
-    <input type="submit" value="Subscribe To Instagram ">
-  </form>
-
 </div>
 <div class="container">
     <div class="col-md-12">
@@ -61,4 +48,5 @@
 
     </div>
   </div>
+
 {% endblock %}
