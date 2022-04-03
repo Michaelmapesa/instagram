@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 import datetime as dt
 
 # Create your models here.
-class Profile(models.Mode):
+class Profile(models.Model):
     class Meta:
         db_table='profile'
 
@@ -82,7 +82,7 @@ class Image(models.Model):
     name = models.CharField(max_length=40)
     user = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, related_name="images")
     description=models.TextField()
-    location=models.ForeignKey(Location, null=True)
+    location=models.ForeignKey(Location, null=True,on_delete=models.CASCADE)
     tags=models.ManyToManyField(tags, blank=True)
     likes = models.IntegerField(default=0)
     comments= models.TextField(blank=True)
@@ -127,6 +127,47 @@ class Image(models.Model):
     def update_description(cls, id):
         pictures = cls.objects.filter(id=id).update(id=id)
         return pictures
+
+class Followers(models.Model):
+    '''
+    followers
+    '''
+    user = models.CharField(max_length=20, default="")
+    follower = models.CharField(max_length=20, default="")
+
+
+class Review(models.Model):
+    user = models.ForeignKey(User, null=True, blank=True, on_delete=models.CASCADE, related_name='user')
+    image = models.ForeignKey(Image, on_delete=models.CASCADE, related_name="review")
+    comment = models.TextField()
+
+    def save_comment(self):
+        self.save()
+
+    def get_comment(self, id):
+        comments = Review.objects.filter(image_id =id)
+        return comments
+
+    def __str__(self):
+        return self.comment
+
+class NewsLetterRecipients(models.Model):
+    name = models.CharField(max_length = 30)
+    email = models.EmailField()
+
+class Like(models.Model):
+    user = models.ForeignKey(User,on_delete=models.CASCADE)
+    image = models.ForeignKey(Image,on_delete=models.CASCADE)
+    value = models.IntegerField(default=True, null=True, blank=True)
+
+    def save_like(self):
+        self.save()
+
+    def __str__(self):
+        return str(self.user) + ':' + str(self.image) + ':' + str(self.value)
+
+    class Meta:
+        unique_together = ("user", "image", "value")
 
 
 
