@@ -65,4 +65,18 @@ class Location(models.Model):
         return self.name
 
 
+class tags(models.Model):
+    name = models.CharField(max_length=30)
+
+    def __str__(self):
+        return self.name
+
+    def save_tags(self):
+        self.save()
+
+    def delete_tags(self):
+        self.delete()
+
+
+
         
