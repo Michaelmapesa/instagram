@@ -60,12 +60,7 @@ def image(request, id):
     current_user = request.user
     comments = Review.get_comment(Review, id)
 
-    #
-    # p = Image.objects.get(image_id=id)
-    # onelike = Like.objects.get_or_create(user=request.user, image_id=id)
-    # likes = p.like_set.all().count()
-
-
+    
 
     if request.method == 'POST':
         form = ReviewForm(request.POST)
