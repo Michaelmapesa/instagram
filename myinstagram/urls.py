@@ -18,6 +18,7 @@ urlpatterns=[
     re_path(r'^edit/profile$', views.edit_profile, name='edit_profile'),
     re_path(r'^profile/(?P<username>[0-9]+)$', views.individual_profile_page, name='individual_profile_page'),
     re_path(r'^myprofile/$', views.myprofile, name='myprofile'),
+    re_path(r'^logout/$', views.logout, {"next_page": '/'}), 
     
 ]
 
