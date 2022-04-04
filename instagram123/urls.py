@@ -18,10 +18,10 @@ from django.urls import path,re_path,include
 from django.contrib.auth import views
 
 urlpatterns = [
+    re_path(r'^accounts/', include('django.contrib.auth.urls')),
     path('admin/', admin.site.urls),
     path('',include('myinstagram.urls')),
     re_path(r'^accounts/', include('django_registration.backends.one_step.urls')),
-    re_path(r'^accounts/', include('django.contrib.auth.urls')),
     # re_path(r'^logout/$', views.logout, {"next_page": '/'}),
 
 
