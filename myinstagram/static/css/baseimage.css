@@ -1,0 +1,40 @@
+a{
+    color:#003366;
+}
+    
+body{
+    background-color:white;
+}
+
+    
+#victor{
+   font-family: 'Grand Hotel', cursive;
+   font-size: 30px;
+    
+    
+}
+    
+    
+li {
+        
+    display: block;
+ }
+    
+    
+li a {
+    
+    padding: 20px;
+    
+ }
+    
+#footer1 li{
+    padding: 10px;
+    
+    font-size: 10px;
+    
+    
+}
+#list{
+    display: flex;
+    background-color: red;
+}
