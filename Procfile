@@ -1,1 +1,1 @@
-web: gunicorn gallery123.wsgi --log-file -
+web: gunicorn instagram123.wsgi --log-file -
