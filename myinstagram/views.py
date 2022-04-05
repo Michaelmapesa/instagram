@@ -233,7 +233,7 @@ def login_request(request):
 	form = AuthenticationForm()
 	return render(request=request, template_name="login.html", context={"login_form":form})
 
-# def logout_request(request):
-# 	logout(request)
-# 	messages.info(request, "You have successfully logged out.") 
-# 	return redirect(" ")
+def logout_request(request):
+	logout(request)
+	messages.info(request, "You have successfully logged out.") 
+	return redirect("login")
