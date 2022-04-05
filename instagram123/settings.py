@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 
 from pathlib import Path
 import os
+import django_on_heroku
+import dj_database_url
 from decouple import config, Csv
 
 
@@ -82,14 +84,23 @@ WSGI_APPLICATION = 'instagram123.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
+if config('MODE')=="dev":
+
+    DATABASES = {
+     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME':'inst',
         'USER': 'moringaaccess',
         'PASSWORD':'access',
     }
 }
+else:
+   DATABASES = {
+       'default': dj_database_url.config(
+           default=config('DATABASE_URL')
+       )
+   }
+
 
 
 # Password validation
