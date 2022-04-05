@@ -19,7 +19,7 @@ urlpatterns=[
     re_path(r'^profile/(?P<username>[0-9]+)$', views.individual_profile_page, name='individual_profile_page'),
     re_path(r'^myprofile/$', views.myprofile, name='myprofile'),
     re_path(r'^accounts/', include('django.contrib.auth.urls')),
-    path("logout", views.logout_request, name= "logout"),
+    # path("logout", views.logout_request, name= "logout"),
 
     
 ]
